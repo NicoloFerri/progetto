@@ -1,13 +1,25 @@
 package com.example.CineRecensore.entity;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.Date;
-
+@Entity
 public class Recensione {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String testoDellaRecensione;
     private Integer valutazione;
     private LocalDate dataRecensione;
+
+    @ManyToOne
+    @JoinColumn(name = "film_id")
+    private Film film;
+
+    @ManyToOne
+    @JoinColumn(name = "utente_id")
+    private Utente utente;
 
     public Recensione(Long id, String testoDellaRecensione, Integer valutazione, LocalDate dataRecensione) {
         this.id = id;

@@ -1,12 +1,21 @@
 package com.example.CineRecensore.entity;
 
-//TODO @Entity
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
 public class Utente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nomeUtente;
     private String email;
     private String password;
     private Enum ruolo;
+
+    @OneToMany(mappedBy = "utente")
+    private List<Recensione> recensioni;
 
     public Utente(Long id, String nomeUtente, String email, String password, Enum ruolo) {
         this.id = id;

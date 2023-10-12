@@ -1,6 +1,14 @@
 package com.example.CineRecensore.entity;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "film")
 public class Film {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String titolo;
     private String regista;
@@ -8,6 +16,9 @@ public class Film {
     private Enum genere;
     private String trama;
     private Double valutazioneMedia;
+
+    @OneToMany(mappedBy = "film")
+    private List<Recensione> recensioni;
 
     public Film(Long id, String titolo, String regista, Integer annoDiUscita, Enum genere, String trama, Double valutazioneMedia) {
         this.id = id;
