@@ -19,6 +19,9 @@ public class Film {
     @OneToMany(mappedBy = "film")
     private List<Recensione> recensioni;
 
+    public Film(){
+
+    }
     public Film(Long id, String titolo, String regista, Integer annoDiUscita, Enum genere, String trama, Double valutazioneMedia) {
         this.id = id;
         this.titolo = titolo;

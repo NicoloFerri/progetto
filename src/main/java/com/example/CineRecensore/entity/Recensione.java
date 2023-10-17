@@ -21,6 +21,9 @@ public class Recensione {
     @JoinColumn(name = "utente_id")
     private Utente utente;
 
+    public Recensione(){
+
+    }
     public Recensione(Long id, String testoDellaRecensione, Integer valutazione, LocalDate dataRecensione) {
         this.id = id;
         this.testoDellaRecensione = testoDellaRecensione;

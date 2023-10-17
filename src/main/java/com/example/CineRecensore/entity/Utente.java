@@ -17,6 +17,10 @@ public class Utente {
     @OneToMany(mappedBy = "utente")
     private List<Recensione> recensioni;
 
+    public Utente(){
+
+    }
+
     public Utente(Long id, String nomeUtente, String email, String password, Enum ruolo) {
         this.id = id;
         this.nomeUtente = nomeUtente;
