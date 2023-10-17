@@ -30,8 +30,8 @@ public class FilmController {
     }
 
     @GetMapping("/get/film/by-titolo")
-    public List<Film> getFilmsByTitolo(@RequestParam("titolo") String titolo) {
-        return filmService.getFilmsByTitolo(titolo);
+    public List<Film> getFilmsByPartialTitle(@RequestParam String partialTitle) {
+        return filmService.getFilmByPartialTitle(partialTitle);
     }
 
     @PostMapping("/add/")

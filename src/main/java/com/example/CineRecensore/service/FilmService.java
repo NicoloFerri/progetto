@@ -29,8 +29,8 @@ public class FilmService {
     }
 
     //TODO metodo da implementare
-    public List<Film> getFilmsByTitolo(String titolo) {
-        return filmRepository.findFilmByTitolo(titolo);
+    public List<Film> getFilmByPartialTitle(String partialTitle) {
+        return filmRepository.findFilmByPartialTitolo(partialTitle);
     }
 
     public Film createFilm(Film newFilm) {
