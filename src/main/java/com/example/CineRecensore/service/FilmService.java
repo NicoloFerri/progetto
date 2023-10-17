@@ -29,10 +29,9 @@ public class FilmService {
     }
 
     //TODO metodo da implementare
-    /*
-    public Optional<Film> findByTitolo(String titolo){
+    public List<Film> getFilmsByTitolo(String titolo) {
+        return filmRepository.findFilmByTitolo(titolo);
     }
-    */
 
     public Film createFilm(Film newFilm) {
         return filmRepository.save(newFilm);

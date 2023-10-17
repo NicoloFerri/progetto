@@ -29,6 +29,11 @@ public class FilmController {
         return filmService.getFilmById(id);
     }
 
+    @GetMapping("/get/film/by-titolo")
+    public List<Film> getFilmsByTitolo(@RequestParam("titolo") String titolo) {
+        return filmService.getFilmsByTitolo(titolo);
+    }
+
     @PostMapping("/add/")
     public Film createIngredient(@RequestBody Film newFilm) {
         return filmService.createFilm(newFilm);
