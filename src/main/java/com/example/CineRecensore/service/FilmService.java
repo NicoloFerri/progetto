@@ -37,17 +37,23 @@ public class FilmService {
         return filmRepository.save(newFilm);
     }
 
-    public Film updateFilm(Long id, Film updatedNewFilm) {
-        if (filmRepository.existsById(id)) {
-            updatedNewFilm.setId(id);
-            return filmRepository.save(updatedNewFilm);
+    public Optional<Film> updateFilm(Long id, Film updatedNewFilm) {
+        Optional<Film> filmOpt = filmRepository.findById(id);
+        if (filmOpt.isPresent()) {
+            Film film = filmRepository.save(updatedNewFilm);
+            return Optional.of(film);
         } else {
-            throw new IllegalArgumentException("Film non trovato!");
+            return Optional.empty();
         }
     }
 
-    public void deleteFilm(Long id) {
-        filmRepository.deleteById(id);
+    public Optional<Film> deleteFilm(Long id) {
+        Optional<Film> filmOpt = filmRepository.findById(id);
+        if(filmOpt.isPresent()){
+            filmRepository.deleteById(id);
+            return filmOpt;
+        }
+        return Optional.empty();
     }
 
 }
