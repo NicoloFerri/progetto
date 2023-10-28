@@ -31,16 +31,21 @@ public class RecensioneService {
         return recensioneRepository.save(newRecensione);
     }
 
-    public Recensione updateRecensione(Long id, Recensione updatedNewRecensione) {
-        if (recensioneRepository.existsById(id)) {
-            updatedNewRecensione.setId(id);
-            return recensioneRepository.save(updatedNewRecensione);
-        } else {
-            throw new IllegalArgumentException("Recensione non trovata!");
+    public Optional<Recensione> updateRecensione(Long id, Recensione recensione) {
+        Optional<Recensione> recensioneOpt = recensioneRepository.findById(id);
+        if(recensioneOpt.isPresent()){
+            recensioneOpt.get().setDataRecensione(recensione.getDataRecensione());
+            recensioneOpt.get().setTestoDellaRecensione(recensione.getTestoDellaRecensione());
+            recensioneOpt.get().setValutazione(recensione.getValutazione());
+            recensioneRepository.save(recensioneOpt.get());
         }
+       return recensioneOpt;
     }
 
     public void deleteRecensione(Long id) {
-        recensioneRepository.deleteById(id);
+        Optional<Recensione> recensioneOpt = recensioneRepository.findById(id);
+        if (recensioneOpt.isPresent()) {
+            recensioneRepository.deleteById(id);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.CineRecensore.service;
 
 import com.example.CineRecensore.entity.Utente;
+import com.example.CineRecensore.repository.RecensioneRepository;
 import com.example.CineRecensore.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,11 @@ import java.util.Optional;
 public class UtenteService {
     private final UtenteRepository utenteRepository;
 
-    public UtenteService(UtenteRepository utenteRepository) {
+    private final RecensioneRepository recensioneRepository;
+
+    public UtenteService(UtenteRepository utenteRepository, RecensioneRepository recensioneRepository) {
         this.utenteRepository = utenteRepository;
+        this.recensioneRepository = recensioneRepository;
     }
 
     @Autowired

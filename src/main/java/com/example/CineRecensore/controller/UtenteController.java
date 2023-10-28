@@ -19,7 +19,7 @@ public class UtenteController {
     }
 
 
-    @PostMapping("/insertUtente")
+    @PostMapping("/insert")
     public Utente createUtente(@RequestBody Utente utente){
         return utenteService.createUtente(utente);
     }
@@ -29,12 +29,12 @@ public class UtenteController {
         return utenteService.getAllUtenti();
     }
 
-    @GetMapping("/getUtenteById/{id}")
+    @GetMapping("/getById/{id}")
     public Optional<Utente> getUtenteById (@PathVariable Long id){
         return utenteService.getUtenteById(id);
     }
 
-    @GetMapping("/getUtenteByRuolo/{ruolo}")
+    @GetMapping("/getByRuolo/{ruolo}")
   public List<Utente> getUtenteByRuolo (@PathVariable String ruolo){
         return utenteService.getUtenteByRuolo(ruolo);
     }
