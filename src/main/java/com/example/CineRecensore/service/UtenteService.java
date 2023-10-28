@@ -5,7 +5,9 @@ import com.example.CineRecensore.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -25,8 +27,19 @@ public class UtenteService {
         return utenteRepository.findById(id);
     }
 
-    public Utente createUtente(Utente newUtente) {
-        return utenteRepository.save(newUtente);
+    public List<Utente> getUtenteByRuolo(String ruolo){
+        List<Utente> listOfAll = utenteRepository.findAll();
+        List<Utente> listOfRuolo = new ArrayList<>();
+        for (Utente utente : listOfAll) {
+            if(Objects.equals(utente.getRuolo(), ruolo)){
+                listOfRuolo.add(utente);
+            }
+        }
+        return listOfRuolo;
+    }
+
+    public Utente createUtente(Utente utenteRequest) {
+        return utenteRepository.save(utenteRequest);
     }
 
     public Utente updateUtente(Long id, Utente updatedNewUtente) {

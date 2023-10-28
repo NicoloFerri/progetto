@@ -1,18 +1,50 @@
 package com.example.CineRecensore.controller;
 
+import com.example.CineRecensore.entity.Utente;
 import com.example.CineRecensore.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/utente")
+@RequestMapping("/utente")
 public class UtenteController {
-    private UtenteService utenteService;
+    private final UtenteService utenteService;
 
     @Autowired
     public UtenteController(UtenteService utenteService) {
         this.utenteService = utenteService;
     }
+
+
+    @PostMapping("/insertUtente")
+    public Utente createUtente(@RequestBody Utente utente){
+        return utenteService.createUtente(utente);
+    }
+
+    @GetMapping("/getAll")
+    public List<Utente> getaAll(){
+        return utenteService.getAllUtenti();
+    }
+
+    @GetMapping("/getUtenteById/{id}")
+    public Optional<Utente> getUtenteById (@PathVariable Long id){
+        return utenteService.getUtenteById(id);
+    }
+
+    @GetMapping("/getUtenteByRuolo/{ruolo}")
+  public List<Utente> getUtenteByRuolo (@PathVariable String ruolo){
+        return utenteService.getUtenteByRuolo(ruolo);
+    }
+
+    @DeleteMapping("/deleteById/{id}")
+    public void deleteById (@PathVariable Long id){
+       utenteService.deleteUtente(id);
+    }
+
+
+
 
 }

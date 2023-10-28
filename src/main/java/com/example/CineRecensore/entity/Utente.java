@@ -12,7 +12,7 @@ public class Utente {
     private String nomeUtente;
     private String email;
     private String password;
-    private Enum ruolo;
+    private String ruolo;
 
     @OneToMany(mappedBy = "utente")
     private List<Recensione> recensioni;
@@ -21,7 +21,7 @@ public class Utente {
 
     }
 
-    public Utente(Long id, String nomeUtente, String email, String password, Enum ruolo) {
+    public Utente(Long id, String nomeUtente, String email, String password, String ruolo) {
         this.id = id;
         this.nomeUtente = nomeUtente;
         this.email = email;
@@ -61,11 +61,11 @@ public class Utente {
         this.password = password;
     }
 
-    public Enum getRuolo() {
+    public String getRuolo() {
         return ruolo;
     }
 
-    public void setRuolo(Enum ruolo) {
+    public void setRuolo(String ruolo) {
         this.ruolo = ruolo;
     }
 }
