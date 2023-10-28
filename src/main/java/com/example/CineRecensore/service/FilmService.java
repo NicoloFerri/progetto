@@ -29,25 +29,32 @@ public class FilmService {
     }
 
     //TODO metodo da implementare
-    public List<Film> getFilmByPartialTitle(String partialTitle) {
+    /*public List<Film> getFilmByPartialTitle(String partialTitle) {
         return filmRepository.findFilmByPartialTitolo(partialTitle);
-    }
+    }*/
 
     public Film createFilm(Film newFilm) {
-        return filmRepository.save(newFilm);
+            return filmRepository.save(newFilm);
     }
 
-    public Film updateFilm(Long id, Film updatedNewFilm) {
-        if (filmRepository.existsById(id)) {
-            updatedNewFilm.setId(id);
-            return filmRepository.save(updatedNewFilm);
-        } else {
-            throw new IllegalArgumentException("Film non trovato!");
+    public Optional<Film> updateFilm(Long id, Film film) {
+        Optional<Film> filmOpt = filmRepository.findById(id);
+        if (filmOpt.isPresent()) {
+            filmOpt.get().setTitolo(film.getTitolo());
+            filmOpt.get().setGenere(film.getGenere());
+            filmOpt.get().setRegista(film.getRegista());
+            filmOpt.get().setAnnoDiUscita(film.getAnnoDiUscita());
+            filmRepository.save(filmOpt.get());
         }
-    }
+           return filmOpt;
+        }
+
 
     public void deleteFilm(Long id) {
-        filmRepository.deleteById(id);
+        Optional<Film> filmOpt = filmRepository.findById(id);
+        if ( filmOpt.isPresent()){
+            filmRepository.deleteById(id);
+        }
     }
 
 }

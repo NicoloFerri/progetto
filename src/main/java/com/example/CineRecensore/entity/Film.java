@@ -12,7 +12,7 @@ public class Film {
     private String titolo;
     private String regista;
     private Integer annoDiUscita;
-    private Enum genere;
+    private String genere;
     private String trama;
     private Double valutazioneMedia;
 
@@ -22,7 +22,7 @@ public class Film {
     public Film(){
 
     }
-    public Film(Long id, String titolo, String regista, Integer annoDiUscita, Enum genere, String trama, Double valutazioneMedia) {
+    public Film(Long id, String titolo, String regista, Integer annoDiUscita, String genere, String trama, Double valutazioneMedia) {
         this.id = id;
         this.titolo = titolo;
         this.regista = regista;
@@ -64,11 +64,11 @@ public class Film {
         this.annoDiUscita = annoDiUscita;
     }
 
-    public Enum getGenere() {
+    public String getGenere() {
         return genere;
     }
 
-    public void setGenere(Enum genere) {
+    public void setGenere(String genere) {
         this.genere = genere;
     }
 
