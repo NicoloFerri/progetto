@@ -22,9 +22,9 @@ public class RecensioneController {
         this.recensioneService = recensioneService;
     }
 
-    @PostMapping("/insert")
-    public Recensione createRecensione(@RequestBody Recensione recensione){
-       return recensioneService.createRecensione(recensione);
+    @PostMapping("/insert/{id_film}/{id_utente}")
+    public Recensione createRecensione(@PathVariable Long id_film , @PathVariable Long id_utente , @RequestBody Recensione recensione){
+       return recensioneService.createRecensione(recensione,id_film,id_utente);
     }
 
     @GetMapping("/getAll")
@@ -41,7 +41,6 @@ public class RecensioneController {
         }
         return  ResponseEntity.ok(errore);
     }
-
 
 
 

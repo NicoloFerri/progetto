@@ -18,7 +18,6 @@ public class UtenteController {
         this.utenteService = utenteService;
     }
 
-
     @PostMapping("/insert")
     public Utente createUtente(@RequestBody Utente utente){
         return utenteService.createUtente(utente);

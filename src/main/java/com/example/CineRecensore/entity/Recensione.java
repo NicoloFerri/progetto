@@ -24,11 +24,14 @@ public class Recensione {
     public Recensione(){
 
     }
-    public Recensione(Long id, String testoDellaRecensione, Integer valutazione, LocalDate dataRecensione) {
+
+    public Recensione(Long id, String testoDellaRecensione, Integer valutazione, LocalDate dataRecensione, Film film, Utente utente) {
         this.id = id;
         this.testoDellaRecensione = testoDellaRecensione;
         this.valutazione = valutazione;
         this.dataRecensione = dataRecensione;
+        this.film = film;
+        this.utente = utente;
     }
 
     public Long getId() {
@@ -61,5 +64,21 @@ public class Recensione {
 
     public void setDataRecensione(LocalDate dataRecensione) {
         this.dataRecensione = dataRecensione;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 }
