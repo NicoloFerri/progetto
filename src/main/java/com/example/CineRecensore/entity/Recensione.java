@@ -13,7 +13,7 @@ public class Recensione {
     private Integer valutazione;
     private LocalDate dataRecensione;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "film_id")
     private Film film;
 

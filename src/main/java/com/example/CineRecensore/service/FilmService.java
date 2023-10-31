@@ -1,6 +1,7 @@
 package com.example.CineRecensore.service;
 
 import com.example.CineRecensore.entity.Film;
+import com.example.CineRecensore.entity.Recensione;
 import com.example.CineRecensore.entity.Utente;
 import com.example.CineRecensore.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ public class FilmService {
             return filmRepository.save(newFilm);
     }
 
+
+
     public Optional<Film> updateFilm(Long id, Film film) {
         Optional<Film> filmOpt = filmRepository.findById(id);
         if (filmOpt.isPresent()) {
@@ -50,11 +53,18 @@ public class FilmService {
         }
 
 
-    public void deleteFilm(Long id) {
+    public Optional<Film> deleteFilm(Long id) {
         Optional<Film> filmOpt = filmRepository.findById(id);
         if ( filmOpt.isPresent()){
             filmRepository.deleteById(id);
         }
+        return filmOpt;
     }
 
-}
+    public void deleteAll(){
+            filmRepository.deleteAll();
+        }
+
+    }
+
+

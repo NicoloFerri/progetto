@@ -4,6 +4,7 @@ import com.example.CineRecensore.entity.Film;
 import com.example.CineRecensore.entity.Recensione;
 import com.example.CineRecensore.service.FilmService;
 import com.example.CineRecensore.service.UtenteService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,7 @@ public class FilmController {
         return filmService.getFilmById(id);
     }
 
+
     /*@GetMapping("/get/film/by-titolo")
     public List<Film> getFilmsByPartialTitle(@RequestParam String partialTitle) {
         return filmService.getFilmByPartialTitle(partialTitle);
@@ -53,7 +55,14 @@ public class FilmController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteFilm(@PathVariable Long id) {
-        filmService.deleteFilm(id);
+    public ResponseEntity<String> deleteFilm(@PathVariable Long id) {
+        Optional<Film> filmOpt = filmService.deleteFilm(id);
+        if(filmOpt.isPresent()){
+            return ResponseEntity.ok("Film eliminato con successo!");
+        }else{
+            return ResponseEntity.badRequest().body("Film non trovato!");
+        }
+
     }
+
 }

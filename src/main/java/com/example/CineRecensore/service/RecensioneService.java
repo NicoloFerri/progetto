@@ -53,10 +53,12 @@ public class RecensioneService {
        return recensioneOpt;
     }
 
-    public void deleteRecensione(Long id) {
+    public void deleteRecensioneById(Long id) {
         Optional<Recensione> recensioneOpt = recensioneRepository.findById(id);
         if (recensioneOpt.isPresent()) {
             recensioneRepository.deleteById(id);
         }
     }
+
+
 }
