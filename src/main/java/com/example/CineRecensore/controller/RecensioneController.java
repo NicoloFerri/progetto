@@ -32,6 +32,11 @@ public class RecensioneController {
         return recensioneService.getAllRecensioni();
     }
 
+    @GetMapping("/list/{id}")
+    public List<Recensione> getList(@PathVariable Long id) {
+        return recensioneService.getList(id);
+    }
+
     @GetMapping("/getById/{id}")
     public ResponseEntity<?> getRecensioneById (@PathVariable Long id){
         Optional recensioneOpt = recensioneService.getRecensioneById(id);

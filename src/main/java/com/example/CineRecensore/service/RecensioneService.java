@@ -53,6 +53,10 @@ public class RecensioneService {
        return recensioneOpt;
     }
 
+    public List<Recensione> getList (Long id){
+        return recensioneRepository.findRecensioneByIdFilm(id);
+    }
+
     public void deleteRecensioneById(Long id) {
         Optional<Recensione> recensioneOpt = recensioneRepository.findById(id);
         if (recensioneOpt.isPresent()) {

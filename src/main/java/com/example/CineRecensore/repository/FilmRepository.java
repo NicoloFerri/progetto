@@ -12,4 +12,6 @@ import java.util.List;
 public interface FilmRepository extends JpaRepository<Film, Long> {
   /*  @Query("SELECT f FROM Film f WHERE f.titolo LIKE %:partialTitle%")
     List<Film> findFilmByPartialTitolo(@Param("partialTitle") String partialTitle);*/
+
+
 }
