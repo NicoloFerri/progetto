@@ -2,25 +2,24 @@ package com.example.CineRecensore.service;
 
 import com.example.CineRecensore.entity.Film;
 import com.example.CineRecensore.entity.Recensione;
-import com.example.CineRecensore.entity.Utente;
 import com.example.CineRecensore.repository.FilmRepository;
+import com.example.CineRecensore.repository.RecensioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class FilmService {
-    private final FilmRepository filmRepository;
+    @Autowired
+    private  FilmRepository filmRepository;
 
 
     public FilmService(FilmRepository filmRepository) {
         this.filmRepository = filmRepository;
     }
 
-    @Autowired
     public List<Film> getAllFilm() {
         return filmRepository.findAll();
     }

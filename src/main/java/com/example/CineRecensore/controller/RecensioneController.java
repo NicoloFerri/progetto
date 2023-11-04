@@ -48,6 +48,15 @@ public class RecensioneController {
     }
 
 
+    @GetMapping("/media/{id}")
+    public ResponseEntity<String> mediaRecensioni (@PathVariable Long id){
+        Double media = recensioneService.getMedia(id);
+        if(media!=0) {
+            return ResponseEntity.ok("la media delle recensioni per il film selezionato è = " + media);
+        }
+        return ResponseEntity.badRequest().body("il film selezionato non ha avuto recensioni!");
+    }
+
 
 
 }

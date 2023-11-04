@@ -57,6 +57,19 @@ public class RecensioneService {
         return recensioneRepository.findRecensioneByIdFilm(id);
     }
 
+    public Double getMedia(Long id){
+        List<Recensione> list = recensioneRepository.findRecensioneByIdFilm(id);
+        int size = list.size();
+        if(size>0){
+            int sum=0;
+            for (Recensione recensione : list) {
+                sum += recensione.getValutazione();
+            }
+            return (double)(sum/size);
+        }
+        return 0.0;
+    }
+
     public void deleteRecensioneById(Long id) {
         Optional<Recensione> recensioneOpt = recensioneRepository.findById(id);
         if (recensioneOpt.isPresent()) {
