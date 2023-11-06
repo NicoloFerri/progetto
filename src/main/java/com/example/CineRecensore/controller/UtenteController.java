@@ -18,27 +18,27 @@ public class UtenteController {
         this.utenteService = utenteService;
     }
 
-    @PostMapping("/insert")
+    @PostMapping("/")
     public Utente createUtente(@RequestBody Utente utente){
         return utenteService.createUtente(utente);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/")
     public List<Utente> getaAll(){
         return utenteService.getAllUtenti();
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/{id}")
     public Optional<Utente> getUtenteById (@PathVariable Long id){
         return utenteService.getUtenteById(id);
     }
 
-    @GetMapping("/getByRuolo/{ruolo}")
+    @GetMapping("/{ruolo}")
   public List<Utente> getUtenteByRuolo (@PathVariable String ruolo){
         return utenteService.getUtenteByRuolo(ruolo);
     }
 
-    @DeleteMapping("/deleteById/{id}")
+    @DeleteMapping("/{id}")
     public void deleteById (@PathVariable Long id){
        utenteService.deleteUtente(id);
     }
