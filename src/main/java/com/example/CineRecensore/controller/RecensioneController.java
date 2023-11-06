@@ -22,22 +22,22 @@ public class RecensioneController {
         this.recensioneService = recensioneService;
     }
 
-    @PostMapping("/insert/{id_film}/{id_utente}")
+    @PostMapping("/{id_film}/{id_utente}")
     public Recensione createRecensione(@PathVariable Long id_film , @PathVariable Long id_utente , @RequestBody Recensione recensione){
        return recensioneService.createRecensione(recensione,id_film,id_utente);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/")
     public List<Recensione> getAll(){
         return recensioneService.getAllRecensioni();
     }
 
-    @GetMapping("/list/{id}")
+    @GetMapping("/{id}")
     public List<Recensione> getList(@PathVariable Long id) {
         return recensioneService.getList(id);
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getRecensioneById (@PathVariable Long id){
         Optional recensioneOpt = recensioneService.getRecensioneById(id);
         String errore = "Id inserito non corrispondete a nessuna recensione";
