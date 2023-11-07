@@ -4,6 +4,7 @@ import com.example.CineRecensore.entity.Film;
 import com.example.CineRecensore.entity.Recensione;
 import com.example.CineRecensore.repository.FilmRepository;
 import com.example.CineRecensore.repository.RecensioneRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,12 @@ public class FilmService {
     @Autowired
     private  FilmRepository filmRepository;
 
+    private RecensioneRepository recensioneRepository;
 
-    public FilmService(FilmRepository filmRepository) {
+
+    public FilmService(FilmRepository filmRepository, RecensioneRepository recensioneRepository) {
         this.filmRepository = filmRepository;
+        this.recensioneRepository = recensioneRepository;
     }
 
     public List<Film> getAllFilm() {
@@ -38,10 +42,11 @@ public class FilmService {
     }
 
 
-
+@Transactional
     public Optional<Film> updateFilm(Long id, Film film) {
         Optional<Film> filmOpt = filmRepository.findById(id);
         if (filmOpt.isPresent()) {
+            recensioneRepository.deleteAllRecensioniByFilmId(id);
             filmOpt.get().setTitolo(film.getTitolo());
             filmOpt.get().setGenere(film.getGenere());
             filmOpt.get().setRegista(film.getRegista());
