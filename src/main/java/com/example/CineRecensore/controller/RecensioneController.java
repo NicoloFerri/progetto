@@ -27,8 +27,12 @@ public class RecensioneController {
                description = "Aggiunge una recesione tramite l'inserimento di un file Json come body , assocciata a uno specifico film e uno" +
                        "specifico utente, tramite l'inserimento dei relativi Id nell'endpoint")
     @PostMapping("/{id_film}/{id_utente}")
-    public Recensione createRecensione(@PathVariable Long id_film , @PathVariable Long id_utente , @RequestBody Recensione recensione){
-       return recensioneService.createRecensione(recensione,id_film,id_utente);
+    public ResponseEntity<String> createRecensione(@PathVariable Long id_film , @PathVariable Long id_utente , @RequestBody Recensione recensione){
+        boolean b = recensioneService.createRecensione(recensione,id_film,id_utente);
+       if(b){
+           return ResponseEntity.ok("Recensione inserita con successo!");
+       }
+       return ResponseEntity.badRequest().body("Errore nell'inserimento della recensione!");
     }
 
     @Operation(summary="Seleziona tutte le recensioni" , description = "Genera un lista di tutte le recensioni presenti a database")

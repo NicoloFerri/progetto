@@ -1,5 +1,6 @@
 package com.example.CineRecensore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -15,16 +16,15 @@ public class Film {
     private String genere;
     private String trama;
     private Double valutazioneMedia;
+    private Integer numeroRecensioni;
 
-    private Integer numerorecensioni;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "film")
     private List<Recensione> recensioni;
 
     public Film(){
 
     }
-
 
     public Film(Long id, String titolo, String regista, Integer annoDiUscita, String genere, String trama, Double valutazioneMedia, Integer numerorecensioni) {
         this.id = id;
@@ -34,7 +34,7 @@ public class Film {
         this.genere = genere;
         this.trama = trama;
         this.valutazioneMedia = valutazioneMedia;
-        this.numerorecensioni = numerorecensioni;
+        this.numeroRecensioni = numerorecensioni;
     }
 
     public Long getId() {
@@ -60,7 +60,6 @@ public class Film {
     public void setRegista(String regista) {
         this.regista = regista;
     }
-
     public Integer getAnnoDiUscita() {
         return annoDiUscita;
     }
@@ -93,11 +92,19 @@ public class Film {
         this.valutazioneMedia = valutazioneMedia;
     }
 
-    public Integer getNumerorecensioni() {
-        return numerorecensioni;
+    public Integer getNumeroRecensioni() {
+        return numeroRecensioni;
     }
 
-    public void setNumerorecensioni(Integer numerorecensioni) {
-        this.numerorecensioni = numerorecensioni;
+    public void setNumeroRecensioni(Integer numeroRecensioni) {
+        this.numeroRecensioni = numeroRecensioni;
+    }
+
+    public List<Recensione> getRecensioni() {
+        return recensioni;
+    }
+
+    public void setRecensioni(List<Recensione> recensioni) {
+        this.recensioni = recensioni;
     }
 }

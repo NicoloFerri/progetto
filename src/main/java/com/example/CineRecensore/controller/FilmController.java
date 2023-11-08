@@ -43,6 +43,7 @@ public class FilmController {
         List<Film> listOfFilm = filmService.getAllFilm();
         for (Film film : listOfFilm) {
             film.setValutazioneMedia(recensioneService.getMedia(film.getId()));
+            film.setNumeroRecensioni(film.getRecensioni().size());
         }
         return listOfFilm;
     }
@@ -52,6 +53,7 @@ public class FilmController {
     public Optional<Film> getFilmById(@PathVariable Long id) {
         Optional<Film> filmOpt = filmService.getFilmById(id);
         filmOpt.get().setValutazioneMedia(recensioneService.getMedia(id));
+        filmOpt.get().setNumeroRecensioni(filmOpt.get().getRecensioni().size());;
         return filmOpt;
     }
 
