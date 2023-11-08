@@ -16,6 +16,7 @@ public class FilmService {
     @Autowired
     private  FilmRepository filmRepository;
 
+    @Autowired
     private RecensioneRepository recensioneRepository;
 
 

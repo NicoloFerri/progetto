@@ -3,6 +3,7 @@ package com.example.CineRecensore.controller;
 import com.example.CineRecensore.entity.Film;
 import com.example.CineRecensore.entity.Recensione;
 import com.example.CineRecensore.service.FilmService;
+import com.example.CineRecensore.service.RecensioneService;
 import com.example.CineRecensore.service.UtenteService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,11 +19,16 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/film")
 public class FilmController {
+    @Autowired
     private final FilmService filmService;
 
     @Autowired
-    public FilmController(FilmService filmService) {
+    private final RecensioneService recensioneService;
+
+
+    public FilmController(FilmService filmService, RecensioneService recensioneService) {
         this.filmService = filmService;
+        this.recensioneService = recensioneService;
     }
 
     @Operation(summary = "Aggiungi un film al database" , description = "Aggiunge un oggetto Film al database tramite l'inserimento di un file Json")
@@ -34,13 +40,19 @@ public class FilmController {
     @Operation(summary = "Seleziona un tutti i film" , description = "Restituisce i dati di tutti i film presenti nel database")
     @GetMapping("/")
     public List<Film> getAllFilm() {
-        return filmService.getAllFilm();
+        List<Film> listOfFilm = filmService.getAllFilm();
+        for (Film film : listOfFilm) {
+            film.setValutazioneMedia(recensioneService.getMedia(film.getId()));
+        }
+        return listOfFilm;
     }
 
     @Operation(summary = "Seleziona un film specifico" , description = "Restituisce i dati di un film specifico attraverso l'inserimento di un Id")
     @GetMapping("/{id}")
     public Optional<Film> getFilmById(@PathVariable Long id) {
-        return filmService.getFilmById(id);
+        Optional<Film> filmOpt = filmService.getFilmById(id);
+        filmOpt.get().setValutazioneMedia(recensioneService.getMedia(id));
+        return filmOpt;
     }
 
 
