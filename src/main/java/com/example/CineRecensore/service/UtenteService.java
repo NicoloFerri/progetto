@@ -13,13 +13,12 @@ import java.util.Optional;
 
 @Service
 public class UtenteService {
+    @Autowired
     private final UtenteRepository utenteRepository;
 
-    private final RecensioneRepository recensioneRepository;
 
-    public UtenteService(UtenteRepository utenteRepository, RecensioneRepository recensioneRepository) {
+    public UtenteService(UtenteRepository utenteRepository) {
         this.utenteRepository = utenteRepository;
-        this.recensioneRepository = recensioneRepository;
     }
 
     @Autowired

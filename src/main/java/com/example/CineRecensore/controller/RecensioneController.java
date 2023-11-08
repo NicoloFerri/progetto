@@ -71,6 +71,18 @@ public class RecensioneController {
         return recensioneService.getList(id);
     }
 
+    @Operation(summary = "Elimina una recensione specifica" , description = "Tramite l'inserimento di un Id è possibile eliminare una specifica recensione")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteRecensioneById (@PathVariable Long id){
+        Optional<Recensione> recensioneOpt = recensioneService.deleteRecensioneById(id);
+        if(recensioneOpt.isPresent()){
+            return ResponseEntity.ok("Recensione " + id
+                                      + " effettuata dall'utente " + recensioneOpt.get().getUtente().getNomeUtente() + " in data : "
+                                      + recensioneOpt.get().getDataRecensione() +
+                                     "\n eliminata con successo!");
+        }
+        return ResponseEntity.badRequest().body("Nessuna recensione trovata per l'Id inserito!");
+    }
 
 
 

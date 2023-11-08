@@ -70,11 +70,12 @@ public class RecensioneService {
         return 0.0;
     }
 
-    public void deleteRecensioneById(Long id) {
+    public Optional<Recensione> deleteRecensioneById(Long id) {
         Optional<Recensione> recensioneOpt = recensioneRepository.findById(id);
         if (recensioneOpt.isPresent()) {
             recensioneRepository.deleteById(id);
         }
+        return recensioneOpt;
     }
 
     }
