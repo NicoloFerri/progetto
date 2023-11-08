@@ -16,13 +16,17 @@ public class Film {
     private String trama;
     private Double valutazioneMedia;
 
+    private Integer numerorecensioni;
+
     @OneToMany(mappedBy = "film")
     private List<Recensione> recensioni;
 
     public Film(){
 
     }
-    public Film(Long id, String titolo, String regista, Integer annoDiUscita, String genere, String trama, Double valutazioneMedia) {
+
+
+    public Film(Long id, String titolo, String regista, Integer annoDiUscita, String genere, String trama, Double valutazioneMedia, Integer numerorecensioni) {
         this.id = id;
         this.titolo = titolo;
         this.regista = regista;
@@ -30,6 +34,7 @@ public class Film {
         this.genere = genere;
         this.trama = trama;
         this.valutazioneMedia = valutazioneMedia;
+        this.numerorecensioni = numerorecensioni;
     }
 
     public Long getId() {
@@ -86,5 +91,13 @@ public class Film {
 
     public void setValutazioneMedia(Double valutazioneMedia) {
         this.valutazioneMedia = valutazioneMedia;
+    }
+
+    public Integer getNumerorecensioni() {
+        return numerorecensioni;
+    }
+
+    public void setNumerorecensioni(Integer numerorecensioni) {
+        this.numerorecensioni = numerorecensioni;
     }
 }

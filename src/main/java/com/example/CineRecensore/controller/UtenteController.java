@@ -33,14 +33,14 @@ public class UtenteController {
 
     @Operation(summary = "Seleziona un utente specifico" , description = "Restituisce i dati di un utente specifico , selezionato attraverso l'inserimento di un" +
             "Id nell'endpoint")
-    @GetMapping("/{id}")
+    @GetMapping("/byId/{id}")
     public Optional<Utente> getUtenteById (@PathVariable Long id){
         return utenteService.getUtenteById(id);
     }
 
     @Operation(summary = "Seleziona un utente specifico" , description = "Restituisce i dati di tutti gli utenti che hanno un determinato ruolo" +
             "inserito precedentemente nell'endpoint")
-    @GetMapping("/{ruolo}")
+    @GetMapping("/byRuolo/{ruolo}")
   public List<Utente> getUtenteByRuolo (@PathVariable String ruolo){
         return utenteService.getUtenteByRuolo(ruolo);
     }
