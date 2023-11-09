@@ -33,10 +33,10 @@ public class FilmService {
         return filmRepository.findById(id);
     }
 
-    //TODO metodo da implementare
-    /*public List<Film> getFilmByPartialTitle(String partialTitle) {
+
+    public List<Film> getFilmByPartialTitle(String partialTitle) {
         return filmRepository.findFilmByPartialTitolo(partialTitle);
-    }*/
+    }
 
     public Film createFilm(Film newFilm) {
             return filmRepository.save(newFilm);

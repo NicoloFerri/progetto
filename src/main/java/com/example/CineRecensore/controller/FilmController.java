@@ -33,9 +33,9 @@ public class FilmController {
 
     @Operation(summary = "Aggiungi un film al database" , description = "Aggiunge un oggetto Film al database tramite l'inserimento di un file Json")
     @PostMapping("/")
-    public Film createIngredient(@RequestBody Film newFilm) {
+    public Film createFilm (@RequestBody() Film newFilm) {
         return filmService.createFilm(newFilm);
-    }
+            }
 
     @Operation(summary = "Seleziona un tutti i film" , description = "Restituisce i dati di tutti i film presenti nel database")
     @GetMapping("/")
@@ -58,10 +58,10 @@ public class FilmController {
     }
 
 
-    /*@GetMapping("/get/film/by-titolo")
+    @GetMapping("/getByTitle/")
     public List<Film> getFilmsByPartialTitle(@RequestParam String partialTitle) {
         return filmService.getFilmByPartialTitle(partialTitle);
-    }*/
+    }
 
     @Operation(summary = "Aggiornamento di un film esistente" , description = "Sostituisce i dati di un film presente con i dati che passiamo via Json, inoltre elimina tutte le recensioni effettuate sul film che è stato modificato")
     @PutMapping("/{id}")
@@ -74,7 +74,7 @@ public class FilmController {
     }
 
     @Operation(summary = "Eliminazione di un film esistente" , description = "Elimina i dati di un film specifico utilizzando l'inserimento di un Id")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteFilm(@PathVariable Long id) {
         Optional<Film> filmOpt = filmService.deleteFilm(id);
         if(filmOpt.isPresent()){
