@@ -14,4 +14,7 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     List<Film> findFilmByPartialTitolo(@Param("partialTitle") String partialTitle);
 
 
+   @Query("SELECT f FROM Film f ORDER BY f.valutazioneMedia DESC ")
+    List<Film> classificaFilm();
+
 }

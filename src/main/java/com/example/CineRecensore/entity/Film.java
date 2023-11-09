@@ -107,4 +107,28 @@ public class Film {
     public void setRecensioni(List<Recensione> recensioni) {
         this.recensioni = recensioni;
     }
+
+    public void addRecensioneToList(Recensione recensione){
+        recensioni.add(recensione);
+    }
+
+    public double media(){
+        int sum=0;
+        for (Recensione recensione : recensioni) {
+            sum+=recensione.getValutazione();
+        }
+        if(sum!=0){
+            return (double)(sum/recensioni.size());
+        }
+        return 0;
+
+    }
+
+    public int numeroRecensioni(){
+        return recensioni.size();
+    }
+
+    public void removeRecensioneToList(Recensione recensione){
+        recensioni.remove(recensione);
+    }
 }

@@ -59,17 +59,6 @@ public class RecensioneController {
     }
 
 
-    @Operation(summary = "Calcolo media recensioni", description = "Calcola la media delle recensioni effettuate su un film specifico , selezionato" +
-            "tramite l'inserimento di un Id nell'endpoint")
-    @GetMapping("/media/{id}")
-    public ResponseEntity<String> mediaRecensioni (@PathVariable Long id){
-        Double media = recensioneService.getMedia(id);
-        if(media!=0) {
-            return ResponseEntity.ok("la media delle recensioni per il film selezionato è = " + media);
-        }
-        return ResponseEntity.badRequest().body("il film selezionato non ha avuto recensioni!");
-    }
-
 
     @Operation(summary="Restituisce tutte le recensioni effettuate su un film specifico" , description = "Tramite l'inserimento di un Id relativo a un film specifico nell'endpoint restituisce " +
             "tutte le recensioni effettuate su quel film ")

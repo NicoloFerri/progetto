@@ -41,9 +41,9 @@ public class RecensioneService {
         if(filmOpt.isPresent() && utenteOpt.isPresent()){
             newRecensione.setFilm(filmOpt.get());
             newRecensione.setUtente(utenteOpt.get());
-            List<Recensione> list = new ArrayList<>();
-            list.add(newRecensione);
-            filmOpt.get().setRecensioni(list);
+            filmOpt.get().addRecensioneToList(newRecensione);
+            filmOpt.get().setValutazioneMedia(filmOpt.get().media());
+            filmOpt.get().setNumeroRecensioni(filmOpt.get().numeroRecensioni());
             filmRepository.save(filmOpt.get());
             recensioneRepository.save(newRecensione);
             return true;
@@ -66,22 +66,25 @@ public class RecensioneService {
         return recensioneRepository.findRecensioneByIdFilm(id);
     }
 
-    public Double getMedia(Long id){
-        List<Recensione> list = recensioneRepository.findRecensioneByIdFilm(id);
-        int size = list.size();
-        if(size>0){
-            int sum=0;
-            for (Recensione recensione : list) {
-                sum += recensione.getValutazione();
-            }
-            return (double)(sum/size);
-        }
-        return 0.0;
-    }
+//    public Double getMedia(Long id){
+//        List<Recensione> list = recensioneRepository.findRecensioneByIdFilm(id);
+//        if(!list.isEmpty()){
+//            int sum=0;
+//            for (Recensione recensione : list) {
+//                sum += recensione.getValutazione();
+//            }
+//            return (double)(sum/list.size());
+//        }
+//        return 0.0;
+//    }
 
     public Optional<Recensione> deleteRecensioneById(Long id) {
         Optional<Recensione> recensioneOpt = recensioneRepository.findById(id);
         if (recensioneOpt.isPresent()) {
+            recensioneOpt.get().getFilm().removeRecensioneToList(recensioneOpt.get());
+            recensioneOpt.get().getFilm().setValutazioneMedia(recensioneOpt.get().getFilm().media());
+            recensioneOpt.get().getFilm().setNumeroRecensioni(recensioneOpt.get().getFilm().numeroRecensioni());
+            filmRepository.save(recensioneOpt.get().getFilm());
             recensioneRepository.deleteById(id);
         }
         return recensioneOpt;

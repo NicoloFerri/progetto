@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,22 +41,22 @@ public class FilmController {
     @Operation(summary = "Seleziona un tutti i film" , description = "Restituisce i dati di tutti i film presenti nel database")
     @GetMapping("/")
     public List<Film> getAllFilm() {
-        List<Film> listOfFilm = filmService.getAllFilm();
-        for (Film film : listOfFilm) {
-            film.setValutazioneMedia(recensioneService.getMedia(film.getId()));
-            film.setNumeroRecensioni(film.getRecensioni().size());
-        }
-        return listOfFilm;
+        return filmService.getAllFilm();
     }
 
     @Operation(summary = "Seleziona un film specifico" , description = "Restituisce i dati di un film specifico attraverso l'inserimento di un Id")
     @GetMapping("/{id}")
     public Optional<Film> getFilmById(@PathVariable Long id) {
-        Optional<Film> filmOpt = filmService.getFilmById(id);
-        filmOpt.get().setValutazioneMedia(recensioneService.getMedia(id));
-        filmOpt.get().setNumeroRecensioni(filmOpt.get().getRecensioni().size());;
-        return filmOpt;
+        return filmService.getFilmById(id);
     }
+
+
+    @Operation(summary = "Restituisce una classifica dei Film" , description = "Crea una lista ordinata in funzione della valutazione media, in modo descescente")
+    @GetMapping("/classifica")
+    public List<Film> getClassifica(){
+        return filmService.classificaFilm();
+    }
+
 
 
     @GetMapping("/getByTitle/")

@@ -66,6 +66,10 @@ public class FilmService {
         return filmOpt;
     }
 
+    public List<Film> classificaFilm(){
+        return filmRepository.classificaFilm();
+    }
+
     public void deleteAll(){
             filmRepository.deleteAll();
         }
