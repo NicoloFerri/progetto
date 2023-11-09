@@ -16,7 +16,6 @@ public class UtenteService {
     @Autowired
     private final UtenteRepository utenteRepository;
 
-
     public UtenteService(UtenteRepository utenteRepository) {
         this.utenteRepository = utenteRepository;
     }

@@ -58,7 +58,7 @@ public class FilmController {
     }
 
 
-
+@Operation(summary = "Restituisce una film specifico inserendo il titolo" , description = "Restituisce i dati di un film specifico attraverso l'inserimento del titolo o di una parte di esso")
     @GetMapping("/getByTitle/")
     public List<Film> getFilmsByPartialTitle(@RequestParam String partialTitle) {
         return filmService.getFilmByPartialTitle(partialTitle);
