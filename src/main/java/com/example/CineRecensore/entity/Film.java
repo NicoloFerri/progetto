@@ -2,6 +2,9 @@ package com.example.CineRecensore.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.sql.Time;
+import java.time.Duration;
 import java.util.List;
 
 @Entity
@@ -15,6 +18,7 @@ public class Film {
     private Integer annoDiUscita;
     private String genere;
     private String trama;
+    private Duration durataFilm;
     private Double valutazioneMedia;
     private Integer numeroRecensioni;
 
@@ -22,19 +26,25 @@ public class Film {
     @OneToMany(mappedBy = "film")
     private List<Recensione> recensioni;
 
+    @OneToOne(mappedBy = "film")
+    private View view;
+
+
+
     public Film(){
 
     }
 
-    public Film(Long id, String titolo, String regista, Integer annoDiUscita, String genere, String trama, Double valutazioneMedia, Integer numerorecensioni) {
+    public Film(Long id, String titolo, String regista, Integer annoDiUscita, String genere, String trama, Duration durataFilm, Double valutazioneMedia, Integer numeroRecensioni) {
         this.id = id;
         this.titolo = titolo;
         this.regista = regista;
         this.annoDiUscita = annoDiUscita;
         this.genere = genere;
         this.trama = trama;
+        this.durataFilm = durataFilm;
         this.valutazioneMedia = valutazioneMedia;
-        this.numeroRecensioni = numerorecensioni;
+        this.numeroRecensioni = numeroRecensioni;
     }
 
     public Long getId() {
@@ -110,6 +120,14 @@ public class Film {
 
     public void addRecensioneToList(Recensione recensione){
         recensioni.add(recensione);
+    }
+
+    public Duration getDurataFilm() {
+        return durataFilm;
+    }
+
+    public void setDurataFilm(Duration durataFilm) {
+        this.durataFilm = durataFilm;
     }
 
     public double media(){

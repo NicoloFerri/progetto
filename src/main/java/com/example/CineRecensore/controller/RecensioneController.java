@@ -15,10 +15,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/recensione")
 public class RecensioneController {
+    @Autowired
     private final RecensioneService recensioneService;
 
-
-    @Autowired
     public RecensioneController(RecensioneService recensioneService) {
         this.recensioneService = recensioneService;
     }
