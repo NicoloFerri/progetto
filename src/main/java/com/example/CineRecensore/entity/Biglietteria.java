@@ -8,6 +8,26 @@ public class Biglietteria {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Integer bigliettiVenduti;
+    private Double totaleIncasso;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

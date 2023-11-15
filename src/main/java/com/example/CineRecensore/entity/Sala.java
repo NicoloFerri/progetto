@@ -13,8 +13,10 @@ public class Sala {
     private String nome;
     private Integer postiASedere;
 
-    @OneToOne(mappedBy = "sala")
-    private View view;
+    private Integer postiASedereRimasti;
+
+    @OneToMany(mappedBy = "sala")
+    private List<View> views;
 
     public Sala() {
     }

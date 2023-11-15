@@ -15,12 +15,12 @@ public class View {
     private LocalDate data;
     private LocalTime orario;
 
-    @OneToOne
-    @JoinColumn(name="film_id")
+  @ManyToOne
+    @JoinColumn(name="film_id", unique = false)
     private Film film;
 
-    @OneToOne
-    @JoinColumn(name = "sala_id")
+   @ManyToOne
+    @JoinColumn(name = "sala_id", unique = false)
     private Sala sala;
 
 
@@ -74,4 +74,18 @@ public class View {
     public void setSala(Sala sala) {
         this.sala = sala;
     }
+
+
+    @Override
+    public String toString() {
+        return "\nData = "+data+"\n"
+                +film.getTitolo()+" , in riproduzione nella "+ sala.getNome() +
+                "\n"+
+                "alle ore = " + orario + "\n" +
+                "durata = " + film.getDurataFilm().toHours() + " ore " +film.getDurataFilm().minusHours(film.getDurataFilm().toHours()).toMinutes() + " minuti\n";
+    }
+
+
+
+
 }

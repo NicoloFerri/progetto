@@ -6,9 +6,12 @@ import com.example.CineRecensore.entity.View;
 import com.example.CineRecensore.repository.FilmRepository;
 import com.example.CineRecensore.repository.SalaRepository;
 import com.example.CineRecensore.repository.ViewRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +39,7 @@ public class ViewService {
         return viewRepository.findById(id);
     }
 
+
     public boolean createView(View view, Long id_film, Long id_sala){
         Optional<Film> filmOpt = filmRepository.findById(id_film);
         Optional<Sala> salaOpt = salaRepository.findById(id_sala);
@@ -46,6 +50,11 @@ public class ViewService {
             return true;
         }
         return false;
+    }
+
+
+    public List<View> print(LocalDate date){
+        return viewRepository.printDaysView(date);
     }
 
 

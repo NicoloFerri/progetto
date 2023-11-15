@@ -19,6 +19,7 @@ public class Film {
     private String genere;
     private String trama;
     private Duration durataFilm;
+    private Double costoBiglietto;
     private Double valutazioneMedia;
     private Integer numeroRecensioni;
 
@@ -26,22 +27,21 @@ public class Film {
     @OneToMany(mappedBy = "film")
     private List<Recensione> recensioni;
 
-    @OneToOne(mappedBy = "film")
-    private View view;
-
-
+    @OneToMany(mappedBy = "film")
+    private List<View> views;
 
     public Film(){
 
     }
 
-    public Film(Long id, String titolo, String regista, Integer annoDiUscita, String genere, String trama, Duration durataFilm, Double valutazioneMedia, Integer numeroRecensioni) {
+    public Film(Long id, String titolo, String regista, Integer annoDiUscita, String genere, String trama,Double costoBiglietto, Duration durataFilm, Double valutazioneMedia, Integer numeroRecensioni) {
         this.id = id;
         this.titolo = titolo;
         this.regista = regista;
         this.annoDiUscita = annoDiUscita;
         this.genere = genere;
         this.trama = trama;
+        this.costoBiglietto = costoBiglietto;
         this.durataFilm = durataFilm;
         this.valutazioneMedia = valutazioneMedia;
         this.numeroRecensioni = numeroRecensioni;
@@ -148,5 +148,13 @@ public class Film {
 
     public void removeRecensioneToList(Recensione recensione){
         recensioni.remove(recensione);
+    }
+
+    public Double getCostoBiglietto() {
+        return costoBiglietto;
+    }
+
+    public void setCostoBiglietto(Double costoBiglietto) {
+        this.costoBiglietto = costoBiglietto;
     }
 }
